@@ -1,0 +1,9 @@
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\Surya\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: 49:AD:04:A6:E6:DE:1D:F7:2F:35:5C:F9:2A:82:57:C0
+SHA1: E3:B1:27:04:0C:09:3E:4C:AB:C4:C8:C5:F1:99:30:F6:CA:C6:E0:00
+SHA-256: 25:8A:BF:A6:84:75:D6:9F:56:AD:9B:DC:E8:2E:A1:95:DF:C4:75:A6:47:BE:A9:35:71:82:BD:69:6A:BC:81:E3
+Valid until: Monday, 23 February, 2054
+
