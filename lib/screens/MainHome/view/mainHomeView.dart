@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:task_management/constant/color.dart';
+import 'package:task_management/screens/addTask/view/addTask.dart';
+import 'package:task_management/screens/home/homeView.dart';
+import 'package:task_management/screens/task/view/taskView.dart';
 
 import '../../../controller/mainHomeViewModal.dart';
 
@@ -30,19 +32,10 @@ class _MainHomeViewState extends State<MainHomeView> {
     super.dispose();
   }
 
-  final List<Widget> Pages = [
-    Container(
-      color: Colors.grey,
-    ),
-    Container(
-      color: Colors.grey,
-    ),
-    Container(
-      color: Colors.grey,
-    ),
-    Container(
-      color: Colors.grey,
-    ),
+  final List<Widget> pages = [
+    const HomeView(),
+    const TaskView(),
+    const AddTask()
   ];
 
   @override
@@ -81,14 +74,14 @@ class _MainHomeViewState extends State<MainHomeView> {
     }, child: Consumer<MainHomeViewViewModal>(
       builder: (context, mainHomeProvider, child) {
         return Scaffold(
-          body: Pages[mainHomeProvider.currentIndex],
+          body: pages[mainHomeProvider.currentIndex],
           extendBody: true,
           bottomNavigationBar: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(16.0),
-                  color: primaryColor,
+                  color: accentColor,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.1),
@@ -103,57 +96,40 @@ class _MainHomeViewState extends State<MainHomeView> {
                       onPressed: () {
                         mainHomeProvider.changeIndexAccordingScreen(0);
                       },
-                      icon: Icon(
+                      icon: SvgPicture.asset(
                         mainHomeProvider.currentIndex == 0
-                            ? Icons.home
-                            : Icons.home_outlined,
-                        size: 30.0,
+                            ? "assets/svg/home_fill.svg"
+                            : "assets/svg/home_outline.svg",
                         color: mainHomeProvider.currentIndex == 0
-                            ? secondaryColor
+                            ? Colors.white
                             : hintColor,
+                        height: mainHomeProvider.currentIndex == 0 ? 22 : 24,
+                        width: mainHomeProvider.currentIndex == 0 ? 22 : 24,
                       ),
                     ),
                     IconButton(
                       onPressed: () {
                         mainHomeProvider.changeIndexAccordingScreen(1);
                       },
-                      icon: SvgPicture.asset(
+                      icon: Icon(
                         mainHomeProvider.currentIndex == 1
-                            ? "assets/svg/newFill.svg"
-                            : "assets/svg/newOutlined.svg",
-                        height: 30.0,
-                        width: 30.0,
+                            ? Icons.calendar_month
+                            : Icons.calendar_month_outlined,
                         color: mainHomeProvider.currentIndex == 1
-                            ? secondaryColor
+                            ? Colors.white
                             : hintColor,
                       ),
                     ),
-                    const Gap(5),
                     IconButton(
                       onPressed: () {
                         mainHomeProvider.changeIndexAccordingScreen(2);
                       },
                       icon: Icon(
                         mainHomeProvider.currentIndex == 2
-                            ? Icons.notifications_active
-                            : Icons.notifications_on_outlined,
-                        size: 30.0,
+                            ? Icons.note_alt_rounded
+                            : Icons.note_alt_outlined,
                         color: mainHomeProvider.currentIndex == 2
-                            ? secondaryColor
-                            : hintColor,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        mainHomeProvider.changeIndexAccordingScreen(3);
-                      },
-                      icon: Icon(
-                        mainHomeProvider.currentIndex == 3
-                            ? Icons.person
-                            : Icons.person_outline,
-                        size: 30.0,
-                        color: mainHomeProvider.currentIndex == 3
-                            ? secondaryColor
+                            ? Colors.white
                             : hintColor,
                       ),
                     ),
